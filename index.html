@@ -4,18 +4,271 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Get Well Soon 💖</title>
+
 <style>
-body{font-family:Arial,sans-serif;background:#ffd6e7;margin:0;display:flex;justify-content:center;align-items:center;min-height:100vh}
-.card{background:white;max-width:700px;padding:25px;border-radius:20px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15)}
-img{max-width:100%;border-radius:16px}
-button{padding:12px 20px;border:none;border-radius:999px;background:#ff6faf;color:white;font-size:16px;cursor:pointer}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ffd6e7,#ffeaf4);
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.card{
+background:white;
+width:90%;
+max-width:650px;
+padding:25px;
+border-radius:25px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+position:relative;
+overflow:hidden;
+}
+
+img{
+max-width:100%;
+border-radius:18px;
+margin-bottom:15px;
+}
+
+h1{
+color:#ff4f8b;
+margin-bottom:10px;
+}
+
+p{
+font-size:18px;
+line-height:1.6;
+margin-bottom:20px;
+color:#444;
+}
+
+.btn{
+padding:12px 24px;
+border:none;
+border-radius:50px;
+cursor:pointer;
+font-size:16px;
+margin:8px;
+transition:0.3s;
+}
+
+.yes{
+background:#ff5c97;
+color:white;
+}
+
+.no{
+background:#ddd;
+color:#333;
+position:relative;
+}
+
+.hidden{
+display:none;
+}
 </style>
 </head>
 <body>
+
 <div class="card">
-<h1>Get Well Soon! 🥺💖</h1>
-<p>This is the starter file for your project. Replace with the final version later.</p>
-<button onclick="alert('Feel better soon! 💕')">Continue</button>
+
+<!-- SCREEN 1 -->
+<div id="screen1">
+
+<img src="getwell.png">
+
+<h1>Get Well Soon 🥺💖</h1>
+
+<p>
+Hey you 🌸💖<br><br>
+I know you're not feeling your best right now,
+so I made this tiny little thing just to make you smile. 🥺🐱💕
+<br><br>
+Take care of yourself and don't forget to rest. ✨
+</p>
+
+<button class="btn yes" onclick="next(2)">
+Continue 💕
+</button>
+
 </div>
+
+<!-- SCREEN 2 -->
+<div id="screen2" class="hidden">
+
+<h1>One Honest Question 😌✨</h1>
+
+<p>
+How has your life changed after meeting me? 💖
+</p>
+
+<button class="btn yes" onclick="next(3)">
+For the better 😌💕
+</button>
+
+<button class="btn no" onclick="showBegging()">
+Not really 😶
+</button>
+
+</div>
+
+<!-- BEGGING SCREEN -->
+<div id="begging" class="hidden">
+
+<img src="Screenshot 2026-06-23 110712.png">
+
+<h1>Please think again! 🥺</h1>
+
+<p>
+Are you absolutely sure? 😭💔
+</p>
+
+<button class="btn yes" onclick="next(3)">
+Okay maybe 😭💕
+</button>
+
+<button class="btn no" onclick="showBegging()">
+Still No 😤
+</button>
+
+</div>
+
+<!-- SCREEN 3 -->
+<div id="screen3" class="hidden">
+
+<img src="pagal-h-tu.png">
+
+<h1>Be honest... are you a little bit pagal? 😌✨</h1>
+
+<button class="btn yes" onclick="showPagalYes()">
+Yes 🤪
+</button>
+
+<button class="btn no" id="movingNo">
+No 😇
+</button>
+
+</div>
+
+<!-- PAGAL YES -->
+<div id="pagalYes" class="hidden">
+
+<h1>😂🐱</h1>
+
+<p>
+Finally, an answer we can both agree on 😂🐱
+</p>
+
+<button class="btn yes" onclick="next(4)">
+Continue 💕
+</button>
+
+</div>
+
+<!-- PAGAL NO -->
+<div id="pagalNo" class="hidden">
+
+<img src="pagal-h-tu.png">
+
+<p>
+Hmm... evidence suggests otherwise. 🤨🐱
+<br><br>
+Would you like to review your answer? 😆
+</p>
+
+<button class="btn yes" onclick="showPagalYes()">
+Okay, maybe 🤭
+</button>
+
+<button class="btn no" onclick="showPagalNoAgain()">
+Still No 😤
+</button>
+
+</div>
+
+<!-- FINAL -->
+<div id="screen4" class="hidden">
+
+<img src="cuddly-cat-kiss-camera-yv9f7x5w494rp5w0.gif">
+
+<h1>You made it to the end! 🥳🐱💖</h1>
+
+<p>
+And because you've been so patient and answered all my silly questions... 🥺💕
+<br><br>
+Ye lo meri taraf se 😚🐱💕
+<br><br>
+Mwahhh! 😚
+<br><br>
+Now promise me you'll take care of yourself, drink some water, and get plenty of rest. 🌸✨
+<br><br>
+Get well soon, okay? 🫂💖
+</p>
+
+<button class="btn yes">
+Promise 😌🐾
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function next(num){
+
+document.querySelectorAll(".card > div").forEach(e=>{
+e.classList.add("hidden");
+});
+
+document.getElementById("screen"+num).classList.remove("hidden");
+}
+
+function showBegging(){
+
+document.getElementById("screen2").classList.add("hidden");
+document.getElementById("begging").classList.remove("hidden");
+}
+
+function showPagalYes(){
+
+document.getElementById("screen3").classList.add("hidden");
+document.getElementById("pagalNo").classList.add("hidden");
+document.getElementById("pagalYes").classList.remove("hidden");
+}
+
+function showPagalNoAgain(){
+
+alert("Are you sureeee? 🤨🐱");
+}
+
+const noBtn=document.getElementById("movingNo");
+
+noBtn.addEventListener("mouseover",()=>{
+
+let x=Math.random()*300-150;
+let y=Math.random()*200-100;
+
+noBtn.style.transform=`translate(${x}px,${y}px)`;
+
+setTimeout(()=>{
+document.getElementById("screen3").classList.add("hidden");
+document.getElementById("pagalNo").classList.remove("hidden");
+},3000);
+
+});
+
+</script>
+
 </body>
 </html>
